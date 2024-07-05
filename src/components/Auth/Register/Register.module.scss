@@ -2,17 +2,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 40vh;
+  height: 60vh;
   .block {
+    width: 400px;
+    padding: 30px;
     display: flex;
     flex-direction: column;
+    background: #fff;
+    border-radius: 15px;
     gap: 10px;
-    background: linear-gradient(135deg, #386be1cc, #2fd460);
-    width: 450px;
-    padding: 30px;
-    h1 {
-      color: #ffffff;
-    }
+
     input {
       padding: 7px;
       font-size: 16px;
@@ -29,29 +28,3 @@
   height: 100%;
 }
 //! ? login
-
-.secondContent {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 60vh;
-  .secondBlock {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    background: linear-gradient(135deg, #2fd460, #2d0cb1);
-    width: 450px;
-    padding: 30px;
-    h1 {
-      color: #ffffff;
-    }
-    input {
-      padding: 7px;
-      font-size: 16px;
-    }
-    button {
-      padding: 7px;
-      font-size: 16px;
-    }
-  }
-}

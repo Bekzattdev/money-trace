@@ -1,9 +1,12 @@
-import Register from "./components/Auth/Register/Register";
+import { Button } from "antd";
+import { Outlet, useNavigate } from "react-router-dom";
 
 const App = () => {
+  const navigate = useNavigate();
   return (
     <div>
-      <Register />
+      <Button onClick={() => navigate("/signUp")}>Sign Up</Button>
+      <Outlet />
     </div>
   );
 };

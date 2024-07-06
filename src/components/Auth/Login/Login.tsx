@@ -12,6 +12,7 @@ const Login = () => {
       const data = await loginUser(email, password);
       setToken(data.auth_token);
       alert("Пользователь успешно авторизовался");
+      localStorage.setItem("token", token);
     } catch (error) {
       alert("Не удалось войти ");
     }
@@ -33,7 +34,10 @@ const Login = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <Button onClick={handleLogin} type="primary" block>
+          <Button
+            onClick={handleLogin}
+            type="primary"
+            block>
             Войти
           </Button>
 

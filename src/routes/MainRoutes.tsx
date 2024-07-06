@@ -1,42 +1,45 @@
-import {
-  createBrowserRouter,
-  Route,
-  RouterProvider,
-  Routes,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "../components/Auth/Login/Login";
 import Register from "../components/Auth/Register/Register";
-import Me from "../components/Me/Me";
 import IncomePage from "../components/Me/children/income/IncomePage";
 import ExpensesPage from "../components/Me/children/expenses/ExpensesPage";
 import MePage from "../components/Me/children/me/MePage";
+import App from "../App";
+import Me from "../components/Me/Me";
 
 const router = createBrowserRouter([
   {
-    path: "/me",
-    element: <Me />,
+    path: "/",
+    element: <App />,
     children: [
       {
-        path: "/me/income",
-        element: <IncomePage />,
+        path: "/me",
+        element: <Me />,
+        children: [
+          
+          {
+            path: "/me/income",
+            element: <IncomePage />,
+          },
+          {
+            path: "/me/expenses",
+            element: <ExpensesPage />,
+          },
+          {
+            path: "/me",
+            element: <MePage />,
+          },
+        ],
       },
       {
-        path: "/me/expenses",
-        element: <ExpensesPage />,
+        path: "/signIn",
+        element: <Login />,
       },
       {
-        path: "/",
-        element: <MePage />,
+        path: "/signUp",
+        element: <Register />,
       },
     ],
-  },
-  {
-    path: "/signIn",
-    element: <Login />,
-  },
-  {
-    path: "/signUp",
-    element: <Register />,
   },
 ]);
 

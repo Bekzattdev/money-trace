@@ -1,0 +1,3 @@
+interface WalletsType {
+    wallets:string
+}

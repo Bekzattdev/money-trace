@@ -1,0 +1,25 @@
+.me {
+  width: 100%;
+  min-height: 100vh;
+
+  nav {
+    padding: 2rem 0;
+    width: 100%;
+    display: flex;
+    background-color: rgb(28, 28, 28);
+
+    a {
+      padding: 0 1rem;
+      color: rgb(217, 217, 217);
+      transition: 0.18s;
+      &:hover {
+        color: rgb(255, 255, 255);
+      }
+    }
+  }
+
+  .content {
+    width: 100%;
+    height: 100%;
+  }
+}

@@ -1,37 +1,45 @@
-import { Route, Routes } from "react-router-dom";
+import {
+  createBrowserRouter,
+  Route,
+  RouterProvider,
+  Routes,
+} from "react-router-dom";
 import Login from "../components/Auth/Login/Login";
 import Register from "../components/Auth/Register/Register";
 import Me from "../components/Me/Me";
+import IncomePage from "../components/Me/children/income/IncomePage";
+import ExpensesPage from "../components/Me/children/expenses/ExpensesPage";
+import MePage from "../components/Me/children/me/MePage";
 
-const MainRoutes = () => {
-  let PUBLIC_ROUTES = [
-    {
-      id: 1,
-      link: "/signIn",
-      element: <Login />,
-    },
-    {
-      id: 2,
-      link: "/signUp",
-      element: <Register />,
-    },
-    {
-      id: 3,
-      link: "/me",
-      element: <Me />,
-    },
-  ];
-  return (
-    <Routes>
-      {PUBLIC_ROUTES.map((route) => (
-        <Route
-          path={route.link}
-          element={route.element}
-          key={route.id}
-        />
-      ))}
-    </Routes>
-  );
-};
+const router = createBrowserRouter([
+  {
+    path: "/me",
+    element: <Me />,
+    children: [
+      {
+        path: "/me/income",
+        element: <IncomePage />,
+      },
+      {
+        path: "/me/expenses",
+        element: <ExpensesPage />,
+      },
+      {
+        path: "/",
+        element: <MePage />,
+      },
+    ],
+  },
+  {
+    path: "/signIn",
+    element: <Login />,
+  },
+  {
+    path: "/signUp",
+    element: <Register />,
+  },
+]);
 
-export default MainRoutes;
+export default function BrowserRouters() {
+  return <RouterProvider router={router} />;
+}

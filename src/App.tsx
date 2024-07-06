@@ -5,7 +5,7 @@ const App = () => {
   const navigate = useNavigate();
   return (
     <div>
-      <Button onClick={() => navigate("/signUp")}>Sign Up</Button>
+      {/* <Button onClick={() => navigate("/signUp")}>Sign Up</Button> */}
       <Outlet />
     </div>
   );

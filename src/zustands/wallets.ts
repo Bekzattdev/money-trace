@@ -1,3 +1,0 @@
-interface WalletsType {
-    wallets:string
-}

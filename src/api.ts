@@ -13,6 +13,7 @@ interface AuthResponse {
   auth_token: string;
 }
 
+// ! Register
 export const registerUser = async (user: User): Promise<void> => {
   try {
     const response = await axios.post(`${API_URL}/auth/users/`, user);
@@ -26,6 +27,7 @@ export const registerUser = async (user: User): Promise<void> => {
     throw error;
   }
 };
+// !Login
 
 export const loginUser = async (
   email: string,
@@ -40,6 +42,24 @@ export const loginUser = async (
       }
     );
     return response.data;
+  } catch (error: any) {
+    if (axios.isAxiosError(error)) {
+      console.error("Axios error:", error.response?.data);
+    } else {
+      console.error("Unexpected error:", error);
+    }
+    throw error;
+  }
+};
+
+//!  Resent Password
+
+export const resetPassword = async (emailOrUsername: string): Promise<void> => {
+  try {
+    const response = await axios.post(`${API_URL}/auth/users/reset_password/`, {
+      email_or_username: emailOrUsername,
+    });
+    console.log("Cброс пароля отправлен:", response.data);
   } catch (error: any) {
     if (axios.isAxiosError(error)) {
       console.error("Axios error:", error.response?.data);

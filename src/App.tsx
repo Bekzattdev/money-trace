@@ -1,5 +1,12 @@
+import { useNavigate } from "react-router-dom";
+
 const App = () => {
-  return <div></div>;
+  const navigate = useNavigate();
+  return (
+    <div>
+      <button onClick={() => navigate("/signUp")}>BOQNb</button>
+    </div>
+  );
 };
 
 export default App;

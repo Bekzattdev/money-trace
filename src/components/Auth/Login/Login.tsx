@@ -11,8 +11,8 @@ const Login = () => {
     try {
       const data = await loginUser(email, password);
       setToken(data.auth_token);
-      alert("Пользователь успешно авторизовался");
       localStorage.setItem("token", token);
+      alert("Пользователь успешно авторизовался");
     } catch (error) {
       alert("Не удалось войти ");
     }

@@ -1,22 +1,30 @@
-import { FC, ReactNode } from "react";
+import { FC, ReactNode, useEffect } from "react";
 import scss from "./Me.module.scss";
-import GetUser from "./Providers/GetUser";
-import { Link, Outlet, useParams } from "react-router-dom";
+import Get from "./Providers/Get";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 
 const Me: FC = (): ReactNode => {
-  const { id } = useParams();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/");
+    }
+  }, []);
 
   return (
-    <GetUser>
+    <Get>
       <main className={scss.me}>
         <nav className={scss.header}>
           <div className="container">
             <div className={scss.wallets}></div>
             <div className={scss.actions}>
-              <Link to={`/me/${id}`}>Главная</Link>
-              <Link to={`/me/${id}/income`}>Доходы</Link>
-              <Link to={`/me/${id}/expenses`}>Расходы</Link>
-              <Link to={`/me/${id}/budget`}>Планированные бюджеты</Link>
+              <Link to="/me">Главная</Link>
+              <Link to="/me/income">Доходы</Link>
+              <Link to="/me/expenses">Расходы</Link>
+              <Link to="/me/cotegory">Категории</Link>
+              <Link to="/me/budget">Планированные бюджеты</Link>
             </div>
           </div>
         </nav>
@@ -26,7 +34,7 @@ const Me: FC = (): ReactNode => {
           </div>
         </div>
       </main>
-    </GetUser>
+    </Get>
   );
 };
 

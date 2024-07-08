@@ -3,14 +3,17 @@ import { ReactNode, FC, useEffect, useState } from "react";
 import { useData } from "../stateMenage";
 import { useNavigate } from "react-router-dom";
 import Loading from "./loading";
+import { getCotegory } from "../api";
 
-const GetUser: FC<{ children: ReactNode }> = ({ children }): ReactNode => {
+const Get: FC<{ children: ReactNode }> = ({ children }): ReactNode => {
   const navigate = useNavigate();
-  const { setUser } = useData();
+  const { setUser, setCotegory } = useData();
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const API: any = import.meta.env.VITE_URL_PUBLICK;
   const token = localStorage.getItem("token");
+
+  
 
   const getUser = async () => {
     setIsLoading(true);
@@ -20,6 +23,9 @@ const GetUser: FC<{ children: ReactNode }> = ({ children }): ReactNode => {
           Authorization: `Token ${token}`,
         },
       });
+
+      const response = await getCotegory(API, token);
+      setCotegory(response);
       setUser(data);
     } catch (e: any) {
       alert(e.message);
@@ -37,4 +43,4 @@ const GetUser: FC<{ children: ReactNode }> = ({ children }): ReactNode => {
   return isLoading ? <Loading /> : <>{children}</>;
 };
 
-export default GetUser;
+export default Get;

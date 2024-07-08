@@ -1,18 +1,33 @@
 * {
-  margin: 0 auto;
+  margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: sans-serif;
 }
 
-// body {
-//   // background: gray;
-// }
 a {
   text-decoration: none;
+}
+
+a,
+button {
+  cursor: pointer;
 }
 
 .container {
   max-width: 1280px;
   width: 90%;
+  height: 100%;
   margin: 0 auto;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+img{
+  object-fit: cover;
 }

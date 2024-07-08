@@ -3,10 +3,12 @@ import { ReactNode, FC, useEffect, useState } from "react";
 import { useData } from "../stateMenage";
 import { useNavigate } from "react-router-dom";
 import Loading from "./loading";
+import { getBalance, getCotegory, getExpenses, getIncomes } from "../api";
 
-const GetUser: FC<{ children: ReactNode }> = ({ children }): ReactNode => {
+const Get: FC<{ children: ReactNode }> = ({ children }): ReactNode => {
   const navigate = useNavigate();
-  const { setUser } = useData();
+  const { setUser, setCotegory, setBalance, setExpenses, setIncomes } =
+    useData();
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const API: any = import.meta.env.VITE_URL_PUBLICK;
@@ -20,6 +22,14 @@ const GetUser: FC<{ children: ReactNode }> = ({ children }): ReactNode => {
           Authorization: `Token ${token}`,
         },
       });
+      const incomes = await getIncomes(API, token);
+      const expenses = await getExpenses(API, token);
+      const cotegory = await getCotegory(API, token);
+      const balance = await getBalance(API, token);
+      setIncomes(incomes);
+      setCotegory(cotegory);
+      setExpenses(expenses);
+      setBalance(balance);
       setUser(data);
     } catch (e: any) {
       alert(e.message);
@@ -37,4 +47,4 @@ const GetUser: FC<{ children: ReactNode }> = ({ children }): ReactNode => {
   return isLoading ? <Loading /> : <>{children}</>;
 };
 
-export default GetUser;
+export default Get;

@@ -6,6 +6,7 @@ import ExpensesPage from "../components/Me/children/expenses/ExpensesPage";
 import MePage from "../components/Me/children/me/MePage";
 import App from "../App";
 import Me from "../components/Me/Me";
+import Cotegory from "../components/Me/children/cotegory/Cotegory";
 
 const router = createBrowserRouter([
   {
@@ -16,7 +17,6 @@ const router = createBrowserRouter([
         path: "/me",
         element: <Me />,
         children: [
-          
           {
             path: "/me/income",
             element: <IncomePage />,
@@ -24,6 +24,10 @@ const router = createBrowserRouter([
           {
             path: "/me/expenses",
             element: <ExpensesPage />,
+          },
+          {
+            path: "/me/cotegory",
+            element: <Cotegory />,
           },
           {
             path: "/me",

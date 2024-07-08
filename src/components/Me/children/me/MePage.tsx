@@ -1,22 +1,11 @@
 import { ReactNode, FC, useEffect } from "react";
 import scss from "./me.module.scss";
 import axios from "axios";
+import { useData } from "../../stateMenage";
 
 const MePage: FC = (): ReactNode => {
-  const get = async () => {
-    const { data } = await axios.get(
-      `${import.meta.env.VITE_URL_PUBLICK}/categories`,
-      {
-        headers: {
-          Authorization: `Token ${localStorage.getItem("token")}`,
-        },
-      }
-    );
-    console.log(data);
-  };
-  useEffect(() => {
-    get();
-  }, []);
+  const { balance } = useData();
+  console.log(balance);
 
   return (
     <section className={scss.me}>

@@ -4,28 +4,47 @@ import { useData } from "../../stateMenage";
 import { SubmitHandler, useForm } from "react-hook-form";
 import axios from "axios";
 import "@/src/index.scss";
+import { getExpenses } from "../../api";
 
 const ExpensesPage: FC = (): ReactNode => {
-  const { expenses, cotegory } = useData();
+  const { expenses, cotegory, setExpenses } = useData();
   const { handleSubmit, register, setValue } = useForm();
   const [isAddLoading, setIsAddLoading] = useState<boolean>(false);
   const [addModal, setAddModal] = useState<boolean>(false);
+  const API = import.meta.env.VITE_URL_PUBLICK;
+  const token = localStorage.getItem("token");
 
   const handleExpenses: SubmitHandler<any> = async (fd) => {
-    const API = import.meta.env.VITE_URL_PUBLICK;
-    const token = localStorage.getItem("token");
     try {
-      const { data } = await axios.post(API + "/expenses/", fd, {
+      setIsAddLoading(true);
+      await axios.post(API + "/expenses/", fd, {
         headers: {
           Authorization: `Token ${token}`,
         },
       });
-      console.log(data);
+      const response = await getExpenses(API, token);
+      setExpenses(response);
     } catch (err: any) {
       console.log(err.response.data);
     } finally {
       setValue("comments", "");
       setValue("amount", "");
+      setIsAddLoading(false);
+    }
+  };
+
+  const handleDeleteExpense = async (id: number) => {
+    try {
+      await axios.delete(API + `/incomes/${id}`, {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      });
+
+      const response = await getExpenses(API, token);
+      setExpenses(response);
+    } catch (error: any) {
+      console.error(error.response.data);
     }
   };
 
@@ -121,7 +140,9 @@ const ExpensesPage: FC = (): ReactNode => {
                 <td>{item.id}</td>
                 <td>{item.comments}</td>
                 <td>
-                  <button>Удалить</button>
+                  <button onClick={() => handleDeleteExpense(item.id)}>
+                    Удалить
+                  </button>
                 </td>
               </tr>
             ))}

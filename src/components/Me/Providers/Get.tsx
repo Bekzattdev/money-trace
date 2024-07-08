@@ -3,11 +3,12 @@ import { ReactNode, FC, useEffect, useState } from "react";
 import { useData } from "../stateMenage";
 import { useNavigate } from "react-router-dom";
 import Loading from "./loading";
-import { getCotegory, getExpenses, getIncomes } from "../api";
+import { getBalance, getCotegory, getExpenses, getIncomes } from "../api";
 
 const Get: FC<{ children: ReactNode }> = ({ children }): ReactNode => {
   const navigate = useNavigate();
-  const { setUser, setCotegory, setExpenses, setIncomes } = useData();
+  const { setUser, setCotegory, setBalance, setExpenses, setIncomes } =
+    useData();
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const API: any = import.meta.env.VITE_URL_PUBLICK;
@@ -24,9 +25,11 @@ const Get: FC<{ children: ReactNode }> = ({ children }): ReactNode => {
       const incomes = await getIncomes(API, token);
       const expenses = await getExpenses(API, token);
       const cotegory = await getCotegory(API, token);
+      const balance = await getBalance(API, token);
       setIncomes(incomes);
       setCotegory(cotegory);
       setExpenses(expenses);
+      setBalance(balance);
       setUser(data);
     } catch (e: any) {
       alert(e.message);

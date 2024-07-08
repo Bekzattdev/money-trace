@@ -8,13 +8,17 @@
     display: flex;
     background-color: rgb(28, 28, 28);
 
-    a {
+    a, p {
+      cursor: pointer;
       padding: 0 1rem;
       color: rgb(217, 217, 217);
       transition: 0.18s;
       &:hover {
         color: rgb(255, 255, 255);
       }
+    }
+    p{
+      margin-left: auto;
     }
   }
 

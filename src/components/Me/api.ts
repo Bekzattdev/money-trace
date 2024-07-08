@@ -27,11 +27,23 @@ export const getExpenses = async (
 export const getIncomes = async (
   API: any,
   token: string | null
-): Promise<CotegoryGetType[]> => {
-  const { data } = await axios.get<CotegoryGetType[]>(API + "/incomes", {
+): Promise<ExpensesType[]> => {
+  const { data } = await axios.get<ExpensesType[]>(API + "/incomes", {
     headers: {
       Authorization: `Token ${token}`,
     },
   });
   return data;
+};
+
+export const getBalance = async (
+  API: any,
+  token: string | null
+): Promise<any> => {
+  const { data } = await axios.get<any>(API + "/wallets", {
+    headers: {
+      Authorization: `Token ${token}`,
+    },
+  });
+  return data[0].balance;
 };

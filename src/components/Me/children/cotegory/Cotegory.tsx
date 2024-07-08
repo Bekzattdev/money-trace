@@ -87,7 +87,7 @@ const Cotegory: FC = memo((): ReactNode => {
           ) : (
             <>
               <div className={scss.action}>
-                <h2>Добавит котегорию</h2>
+                <h2>Добавит расход</h2>
                 <button onClick={() => setAddModal(false)}>закрыть</button>
               </div>
               <form onSubmit={handleSubmit(handleCotegorySubmit)}>

@@ -5,9 +5,6 @@
   font-family: sans-serif;
 }
 
-// body {
-//   // background: gray;
-// }
 a {
   text-decoration: none;
 }
@@ -22,4 +19,10 @@ button {
   width: 90%;
   height: 100%;
   margin: 0 auto;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

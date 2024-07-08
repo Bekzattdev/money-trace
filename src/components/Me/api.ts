@@ -15,8 +15,20 @@ export const getCotegory = async (
 export const getExpenses = async (
   API: any,
   token: string | null
+): Promise<ExpensesType[]> => {
+  const { data } = await axios.get<ExpensesType[]>(API + "/expenses", {
+    headers: {
+      Authorization: `Token ${token}`,
+    },
+  });
+  return data;
+};
+
+export const getIncomes = async (
+  API: any,
+  token: string | null
 ): Promise<CotegoryGetType[]> => {
-  const { data } = await axios.get<CotegoryGetType[]>(API + "/expenses", {
+  const { data } = await axios.get<CotegoryGetType[]>(API + "/incomes", {
     headers: {
       Authorization: `Token ${token}`,
     },

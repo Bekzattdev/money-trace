@@ -152,7 +152,6 @@ const Cotegory: FC = memo((): ReactNode => {
                 />
                 <div className={scss.name}>{item.name}</div>
                 <div className={scss.actions}>
-                  <button>Изменить</button>
                   <button onClick={() => handleDeleteCotegory(item.id)}>
                     Удалить
                   </button>

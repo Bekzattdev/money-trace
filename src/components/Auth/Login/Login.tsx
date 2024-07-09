@@ -10,8 +10,8 @@ const Login = () => {
   const handleLogin = async () => {
     try {
       const data = await loginUser(email, password);
+      localStorage.setItem("token", data.auth_token);
       setToken(data.auth_token);
-      localStorage.setItem("token", token);
       alert("Пользователь успешно авторизовался");
     } catch (error) {
       alert("Не удалось войти ");

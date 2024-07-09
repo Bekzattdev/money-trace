@@ -16,8 +16,9 @@ const Get: FC<{ children: ReactNode }> = ({ children }): ReactNode => {
 
   const getUser = async () => {
     setIsLoading(true);
+
     try {
-      const { data } = await axios.get(API + "/auth/users/me", {
+      const { data } = await axios.get(API + "/auth/users/me/", {
         headers: {
           Authorization: `Token ${token}`,
         },

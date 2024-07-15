@@ -4,10 +4,10 @@ import { useData } from "../../stateMenage";
 import { SubmitHandler, useForm } from "react-hook-form";
 import axios from "axios";
 import "@/src/index.scss";
-import { getExpenses } from "../../api";
+import { getBalance, getExpenses } from "../../api";
 
 const ExpensesPage: FC = (): ReactNode => {
-  const { expenses, cotegory, setExpenses } = useData();
+  const { expenses, cotegory, setExpenses, setBalance } = useData();
   const { handleSubmit, register, setValue } = useForm();
   const [isAddLoading, setIsAddLoading] = useState<boolean>(false);
   const [addModal, setAddModal] = useState<boolean>(false);
@@ -24,6 +24,8 @@ const ExpensesPage: FC = (): ReactNode => {
       });
       const response = await getExpenses(API, token);
       setExpenses(response);
+      const balance = await getBalance(API, token);
+      setBalance(balance);
     } catch (err: any) {
       console.log(err.response.data);
     } finally {
@@ -40,7 +42,8 @@ const ExpensesPage: FC = (): ReactNode => {
           Authorization: `Token ${token}`,
         },
       });
-
+      const balance = await getBalance(API, token);
+      setBalance(balance);
       const response = await getExpenses(API, token);
       setExpenses(response);
     } catch (error: any) {

@@ -4,10 +4,10 @@ import { useData } from "../../stateMenage";
 import { SubmitHandler, useForm } from "react-hook-form";
 import axios from "axios";
 import "@/src/index.scss";
-import { getIncomes } from "../../api";
+import { getBalance, getIncomes } from "../../api";
 
 const IncomesPage: FC = (): ReactNode => {
-  const { incomes, cotegory, setIncomes } = useData();
+  const { incomes, cotegory, setIncomes, setBalance } = useData();
   const { handleSubmit, register, setValue } = useForm();
   const [isAddLoading, setIsAddLoading] = useState<boolean>(false);
   const [addModal, setAddModal] = useState<boolean>(false);
@@ -24,6 +24,9 @@ const IncomesPage: FC = (): ReactNode => {
       });
       const response = await getIncomes(API, token);
       setIncomes(response);
+
+      const balance = await getBalance(API, token);
+      setBalance(balance);
     } catch (err: any) {
       console.log(err.response.data);
     } finally {
@@ -43,6 +46,9 @@ const IncomesPage: FC = (): ReactNode => {
 
       const response = await getIncomes(API, token);
       setIncomes(response);
+
+      const balance = await getBalance(API, token);
+      setBalance(balance);
     } catch (error: any) {
       console.error(error.response.data);
     }
